@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dng6mb4y0f7pf"]
+
+[ext_resource type="PackedScene" uid="uid://cn5pmyoqrihgf" path="res://scenes/Components/camera_3d.tscn" id="1_jdw8n"]
+[ext_resource type="PackedScene" uid="uid://bhiwiolyga3q7" path="res://scenes/Components/Car.tscn" id="2_fjh0i"]
+[ext_resource type="Environment" uid="uid://crtutbi3bif0g" path="res://resources/new_environment.tres" id="2_inlbn"]
+[ext_resource type="Texture2D" uid="uid://ch44is67gx65d" path="res://resources/Prototype_Material_Texture.png" id="3_lqhgc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ard3d"]
+albedo_texture = ExtResource("3_lqhgc")
+rim_enabled = true
+rim = 0.03
+uv1_scale = Vector3(100, 100, 100)
+uv2_scale = Vector3(0, 0, 0)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_p6xsa"]
+material = SubResource("StandardMaterial3D_ard3d")
+size = Vector2(100, 100)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_xbcwe"]
+
+[node name="Game_Scene" type="Node3D"]
+
+[node name="Camera3D" parent="." node_paths=PackedStringArray("car") instance=ExtResource("1_jdw8n")]
+transform = Transform3D(-1, 4.21162e-08, -7.66092e-08, 0, 0.876307, 0.481754, 8.74228e-08, 0.481754, -0.876307, 0.024, 4.631, -5.737)
+environment = ExtResource("2_inlbn")
+current = true
+car = NodePath("../Car")
+target_distance = 4.2
+target_height = 1.4
+
+[node name="Car" parent="." instance=ExtResource("2_fjh0i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.45292, 0)
+friction_slip = Vector2(0.04, 0.845)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="Ground" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_p6xsa")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_xbcwe")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+light_color = Color(1, 1, 0.713726, 1)
+light_energy = 10.837

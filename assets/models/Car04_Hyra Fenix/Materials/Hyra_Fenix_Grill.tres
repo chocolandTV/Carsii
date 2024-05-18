@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bph2fmo8h27xg"]
+
+[ext_resource type="Texture2D" uid="uid://du7tbhh5m30li" path="res://assets/models/Car04_Hyra Fenix/Grill.png" id="1_m6rcj"]
+
+[resource]
+cull_mode = 2
+albedo_texture = ExtResource("1_m6rcj")
+metallic = 1.0

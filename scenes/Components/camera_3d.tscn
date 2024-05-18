@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn5pmyoqrihgf"]
+
+[ext_resource type="Script" path="res://scenes/Components/Car_camera.gd" id="1_g3r4p"]
+
+[node name="Camera3D" type="Camera3D"]
+script = ExtResource("1_g3r4p")
